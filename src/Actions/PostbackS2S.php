@@ -2,37 +2,14 @@
 
 namespace Leadobo\IntegrationTemplate\Actions;
 
-use App\Http\Controllers\Controller;
-use App\Models\ModelAction;
-use App\Models\Action;
-use App\Models\Session;
-use Illuminate\Database\Eloquent\Collection as DatabaseCollection;
-use Illuminate\Database\Eloquent\Model;
+use App\Actions\Leadobo\Action;
 
-class PostbackS2S extends Controller
+class PostbackS2S extends Action
 {
-    public ModelAction $modelAction;
-    public Action $action;
-    public DatabaseCollection $teamIntegrations;
-    public string $trigger; // TODO: ENUM
-
-    public Model $parent;
-    public Session $session;
-
-    public function __construct(ModelAction $modelAction, Model $parent, Session $session) {
-        $this->modelAction = $modelAction;
-        $this->action = $modelAction->action;
-        $this->teamIntegrations = $modelAction->teamIntegrations;
-        $this->trigger = $modelAction->trigger;
-
-        $this->parent = $parent;
-        $this->session = $session;
-    }
-
     public function __invoke() {
 
         if (
-            get_class($this->parent)!==ModelAction::class
+            get_class($this->parent)!==\App\Models\ModelAction::class
             && $this->trigger==='listener'
         ) {
             $route = route('integration.action', [$this->modelAction]);

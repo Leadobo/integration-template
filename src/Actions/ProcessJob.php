@@ -2,9 +2,9 @@
 
 namespace Leadobo\IntegrationTemplate\Actions;
 
-use App\Actions\Leadobo\ActionAsync;
+use App\Actions\Leadobo\Action;
 
-class ProcessJob extends ActionAsync
+class ProcessJob extends Action
 {
     public function handle()
     {

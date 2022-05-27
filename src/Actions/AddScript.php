@@ -14,7 +14,7 @@ class AddScript extends Action
         ;
 
         // NOTE: This Only Makes Sense To Do On Render
-        if ($this->trigger==='render' && get_class($this->parent)===Funnel::class) {
+        if ($this->trigger==='render' && get_class($this->parent)===\App\Models\Funnel::class) {
             return <<<JS
             !function(f,b,e,v,n,t,s)
             {if(f.fbq)return;n=f.fbq=function(){n.callMethod?

@@ -1,10 +1,10 @@
 <?php
 
-namespace Leadobo\Facebook;
+namespace Leadobo\IntegrationTemplate;
 
 use Illuminate\Http\Request;
 
-class FacebookIntegration
+class TemplateIntegration
 {
     /**
      * Perform any tasks that need to happen when the tool is booted.

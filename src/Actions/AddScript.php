@@ -1,11 +1,12 @@
 <?php
 
-namespace Leadobo\Facebook\Actions;
+namespace Leadobo\IntegrationTemplate\Actions;
 
 use App\Http\Controllers\Controller;
 use App\Models\Funnel;
 use App\Models\ModelAction;
 use App\Models\Action;
+use App\Models\Session;
 use Illuminate\Database\Eloquent\Collection as DatabaseCollection;
 use Illuminate\Database\Eloquent\Model;
 
@@ -15,15 +16,18 @@ class AddScript extends Controller
     public Action $action;
     public DatabaseCollection $teamIntegrations;
     public string $trigger; // TODO: ENUM
-    public Model $parent;
 
-    public function __construct(ModelAction $modelAction, Model $parent) {
+    public Model $parent;
+    public Session $session;
+
+    public function __construct(ModelAction $modelAction, Model $parent, Session $session) {
         $this->modelAction = $modelAction;
         $this->action = $modelAction->action;
         $this->teamIntegrations = $modelAction->teamIntegrations;
         $this->trigger = $modelAction->trigger;
 
         $this->parent = $parent;
+        $this->session = $session;
     }
 
     public function __invoke() {
@@ -50,7 +54,7 @@ class AddScript extends Controller
         } elseif (get_class($this->parent)===\App\Models\Page::class) {
             $pageView = "fbq('track', 'PageView');";
             if ($this->trigger==='process') {
-                session()->push('Actions.FacebookIntegration.DoPixel', $pageView);
+                session()->push('Actions.IntegrationTemplate.DoPixel', $pageView);
             }
             return $pageView;
         }

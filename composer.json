@@ -1,6 +1,6 @@
 {
-    "name": "leadobo/facebook",
-    "description": "Facebook Integration",
+    "name": "leadobo/integration-template",
+    "description": "Leadobo Integration Template",
     "keywords": [],
     "license": "MIT",
     "require": {
@@ -8,15 +8,15 @@
     },
     "autoload": {
         "psr-4": {
-            "Leadobo\\Facebook\\": "src/",
-            "Leadobo\\Facebook\\Database\\Migrations\\": "database/migrations/",
-            "Leadobo\\Facebook\\Database\\Seeders\\": "database/seeders/"
+            "Leadobo\\IntegrationTemplate\\": "src/",
+            "Leadobo\\IntegrationTemplate\\Database\\Migrations\\": "database/migrations/",
+            "Leadobo\\IntegrationTemplate\\Database\\Seeders\\": "database/seeders/"
         }
     },
     "extra": {
         "laravel": {
             "providers": [
-              "Leadobo\\Facebook\\IntegrationServiceProvider"
+              "Leadobo\\IntegrationTemplate\\IntegrationServiceProvider"
             ]
         }
     },

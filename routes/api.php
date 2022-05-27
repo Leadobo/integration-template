@@ -19,5 +19,5 @@ Route::get('script.js', function (Request $request) {
         $(function() {
            // js code goes here
         });
-    JS)->header('Content-Type', 'application/javascript');;
+    JS)->header('Content-Type', 'application/javascript');
 });

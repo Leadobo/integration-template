@@ -1,6 +1,6 @@
 <?php
 
-namespace Leadobo\Facebook;
+namespace Leadobo\IntegrationTemplate;
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Validator;

@@ -2,15 +2,22 @@
 
 namespace Leadobo\IntegrationTemplate\Actions;
 
-use App\Http\Controllers\Controller;
+use App\Models\Session;
+use Illuminate\Bus\Queueable;
+use Illuminate\Contracts\Queue\ShouldQueue;
+use Illuminate\Foundation\Bus\Dispatchable;
+use Illuminate\Queue\InteractsWithQueue;
+use Illuminate\Queue\SerializesModels;
+
 use App\Models\ModelAction;
 use App\Models\Action;
-use App\Models\Session;
 use Illuminate\Database\Eloquent\Collection as DatabaseCollection;
 use Illuminate\Database\Eloquent\Model;
 
-class DoPixel extends Controller
+class ProcessJob implements ShouldQueue
 {
+    use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
+
     public ModelAction $modelAction;
     public Action $action;
     public DatabaseCollection $teamIntegrations;
@@ -30,22 +37,12 @@ class DoPixel extends Controller
     }
 
     public function __invoke() {
+        $this::dispatch($this->modelAction, $this->parent, $this->session);
+    }
 
-        $event = $this->modelAction->settings->firstWhere('field','event')->value ?? 'PageView';
-
-        if ($this->modelAction->hasTeamIntegrations) {
-            $scripts = $this->teamIntegrations->map(function($tI) use ($event) {
-                $pixel = $tI->settings->firstWhere('field','pixelId')->value ?? null;
-                return "fbq('trackSingle', '{$pixel}', '{$event}');";
-            })->implode("\n");
-        } else {
-            $scripts = "fbq('track', '{$event}');";
-        }
-
-        if ($this->trigger==='process') {
-            session()->push('Actions.IntegrationTemplate.DoPixel', $scripts);
-        }
-
-        return $scripts;
+    public function handle()
+    {
+        sleep(5);
+        ray('do something async');
     }
 }

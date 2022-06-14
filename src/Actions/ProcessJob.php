@@ -9,6 +9,7 @@ class ProcessJob extends Action
     public function handle()
     {
         sleep(5);
-        ray('do something async');
+        ray('doing something async...');
+        ray($this->action->answers($this->answers));
     }
 }

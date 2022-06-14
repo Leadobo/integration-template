@@ -30,6 +30,13 @@ class IntegrationServiceProvider extends ServiceProvider
             $this->registerRoutes();
         */
 
+
+        /*
+         * Event::listen(
+        PodcastProcessed::class,
+        [SendPodcastNotification::class, 'handle']
+    );
+         */
         if ($this->app->runningInConsole()) {
             // $this->publishResources();
         }

@@ -4,7 +4,7 @@ namespace Leadobo\IntegrationTemplate\Database\Seeders;
 
 use App\Models\Answer;
 use App\Models\Conditional;
-use App\Models\ConditionalMatch;
+use App\Models\ConditionalRule;
 use App\Models\Customer;
 use App\Models\Input;
 use App\Models\InputOption;
@@ -77,10 +77,10 @@ class IntegrationSeeder extends Seeder
                 Action::factory(['name'=>'ModelEvent', 'class'=>\Leadobo\IntegrationTemplate\Actions\ModelEvent::class, 'async'=>true])
                     ->has(
                         Conditional::factory([
-                            'relationships' => [],
-                            'check' => Customer::class,
+                            'match' => 'ALL',
+                            'target' => Customer::class,
                         ])
-                            ->has(ConditionalMatch::factory(['field' => 'email']), 'matches')
+                            ->has(ConditionalRule::factory(['field' => 'email']), 'rules')
                         , 'conditionals'
                     )
             )

@@ -80,7 +80,7 @@ class IntegrationSeeder extends Seeder
                             'match' => 'ALL',
                             'target' => Customer::class,
                         ])
-                            ->has(ConditionalRule::factory(['field' => 'email']), 'rules')
+                            ->has(ConditionalRule::factory(['attribute' => 'email']), 'rules')
                         , 'conditionals'
                     )
             )

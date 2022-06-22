@@ -6,7 +6,7 @@ use App\Actions\Leadobo\Action;
 
 class Process extends Action
 {
-    public function __invoke() {
-
+    public function __invoke()
+    {
     }
 }

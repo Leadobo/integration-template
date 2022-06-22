@@ -8,7 +8,6 @@ use Illuminate\Support\ServiceProvider;
 
 class IntegrationServiceProvider extends ServiceProvider
 {
-
     // php artisan vendor:publish --tag=randomable-seeds
     // php artisan db:seed --class=RandomableTableSeeder
 
@@ -80,7 +79,7 @@ class IntegrationServiceProvider extends ServiceProvider
      */
     protected function validators()
     {
-        Validator::extend('verify_something', function($attribute, $value, $parameters) {
+        Validator::extend('verify_something', function ($attribute, $value, $parameters) {
             return false;
         });
     }
@@ -92,7 +91,6 @@ class IntegrationServiceProvider extends ServiceProvider
      */
     protected function events()
     {
-
     }
 
     /**

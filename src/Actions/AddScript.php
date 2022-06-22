@@ -6,11 +6,11 @@ use App\Actions\Leadobo\Action;
 
 class AddScript extends Action
 {
-    public function __invoke() {
-
+    public function __invoke()
+    {
         $initPixels = $this->teamIntegrations
-            ->map(fn($tI) => $tI->settings->firstWhere('field','pixelId')->value ?? null)
-            ->filter()->map(fn($pixel) => "fbq('init', '{$pixel}');")->implode("\n")
+            ->map(fn ($tI) => $tI->settings->firstWhere('field', 'pixelId')->value ?? null)
+            ->filter()->map(fn ($pixel) => "fbq('init', '{$pixel}');")->implode("\n")
         ;
 
         // NOTE: This Only Makes Sense To Do On Render

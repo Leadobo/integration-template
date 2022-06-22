@@ -2,13 +2,10 @@
 
 namespace Leadobo\IntegrationTemplate\Database\Seeders;
 
-use App\Models\Answer;
 use App\Models\Conditional;
 use App\Models\ConditionalRule;
 use App\Models\Customer;
 use App\Models\Input;
-use App\Models\InputOption;
-use App\Models\Progress;
 use App\Models\RequirementOption;
 use App\Models\Team;
 use Illuminate\Database\Seeder;
@@ -80,15 +77,15 @@ class IntegrationSeeder extends Seeder
                             'match' => 'ALL',
                             'target' => Customer::class,
                         ])
-                            ->has(ConditionalRule::factory(['attribute' => 'email']), 'rules')
-                        , 'conditionals'
+                            ->has(ConditionalRule::factory(['attribute' => 'email']), 'rules'),
+                        'conditionals'
                     )
             )
             ->create();
 
-            // NOTE: Adds Validation Option to Phone Input?
-            RequirementOption::factory(['label' => 'Some Validation', 'value' => 'customValidation'])
-                ->for(Requirement::firstWhere('field','validation'), 'requirement')
+        // NOTE: Adds Validation Option to Phone Input?
+        RequirementOption::factory(['label' => 'Some Validation', 'value' => 'customValidation'])
+                ->for(Requirement::firstWhere('field', 'validation'), 'requirement')
             ->create();
     }
 }

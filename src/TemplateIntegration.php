@@ -2,8 +2,6 @@
 
 namespace Leadobo\IntegrationTemplate;
 
-use Illuminate\Http\Request;
-
 class TemplateIntegration
 {
     /**

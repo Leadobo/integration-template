@@ -6,8 +6,8 @@ use App\Actions\Leadobo\Action;
 
 class PostbackS2S extends Action
 {
-    public function __invoke() {
-
+    public function __invoke()
+    {
         if (
             get_class($this->parent)!==\App\Models\ModelAction::class
             && $this->trigger==='listener'
